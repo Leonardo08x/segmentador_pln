@@ -7,6 +7,7 @@ from util.utils import pre_processamento
 from util.utils import salvar_segmentacao
 model = spacy.load("pt_core_news_sm")
 
+# Função principal para segmentar o texto, já realiza a segmentação por ponto, ponto de exclamação e interrogação, depois segmenta por verbos, depois segmenta por regras de segmentação interior e por fim segmenta por sinais de pontuação.   
 def segmentar_texto(texto):
     texto = pre_processamento(texto)
     doc = model(texto)

@@ -36,3 +36,4 @@ def salvar_segmentacao(texto_tokenize):
 
 def lista_verbos_atributivos():
     verbos = ["dizer", "afirmar", "falar", "declarar", "comentar", "perguntar", "responder"]
+    return verbos

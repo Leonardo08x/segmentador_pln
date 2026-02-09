@@ -1,3 +1,4 @@
+# segmentação de sentenças a partir de sinais de pontuação
 def segmentar_sinais(tokenized_sents):
     segmentacoes = []
     for sent in tokenized_sents:
