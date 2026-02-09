@@ -1,5 +1,5 @@
 from util.utils import ja_existe_segmentacao
-
+from util.utils import lista_verbos_atributivos
 def tem_verbos(sentenca):
     for token in sentenca:
         if token[2] == "VERB":
@@ -20,7 +20,7 @@ def segmentar_por_verbos(tokenized_sents):
                 if  sent[token_index][3] == 'relcl':
                     sub_sentencas_segmentadas.append(['|', '|', 'PUNCT', 'segment', False])
                     sub_sentencas_segmentadas.append(sent[token_index])
-                elif sent[token_index][1] in ["dizer", "afirmar", "falar", "declarar", "comentar", "perguntar", "responder"]:
+                elif sent[token_index][1] in lista_verbos_atributivos:
                     sub_sentencas_segmentadas.append(sent[token_index])
                     if token_index < len(sent) - 1:
                         sub_sentencas_segmentadas.append(['|', '|', 'PUNCT', 'segment', False])
