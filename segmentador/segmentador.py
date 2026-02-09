@@ -1,0 +1,30 @@
+import spacy 
+from regras.oracoes import segmentar_por_verbos
+from regras.interiores import segmentacao_interior
+from regras.sinais import segmentar_sinais
+from util.utils import printar_segmentacao
+from util.utils import pre_processamento
+model = spacy.load("pt_core_news_sm")
+
+def segmentar_texto(texto):
+    texto = pre_processamento(texto)
+    doc = model(texto)
+    # 1) Segmentar sentenças terminadas por ponto, ponto de exclamação e de interrogação. 
+    tokenized_sents = []
+    for sent in doc.sents:
+        current_sent = []
+        for token in sent:
+           current_sent.append([token.text, token.lemma_, token.pos_, token.dep_, token.morph.get("VerbForm")])
+        if current_sent[-1][0] in [".", "!", "?"]:
+            current_sent.append(['|', '|', 'PUNCT', 'segment', False])
+        tokenized_sents.append(current_sent)
+    verbos_segmentados = segmentar_por_verbos(tokenized_sents)
+    interior = segmentacao_interior(verbos_segmentados)
+    sinais = segmentar_sinais(interior)
+    printar_segmentacao(sinais)
+    return tokenized_sents
+
+
+
+segmentar_texto(":/\ | Ola mundo, estudo pln na ufpa ! sou o leonardo(corno), e gosto de programar em python.")
+
