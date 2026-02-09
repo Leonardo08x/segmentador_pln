@@ -33,3 +33,6 @@ def salvar_segmentacao(texto_tokenize):
                 for token in sent:
                     file.write(token[0] + " ")
                 file.write("\n")
+
+def lista_verbos_atributivos():
+    verbos = ["dizer", "afirmar", "falar", "declarar", "comentar", "perguntar", "responder"]
