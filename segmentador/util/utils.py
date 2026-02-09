@@ -8,7 +8,7 @@ def ja_existe_segmentacao(sent):
         return True
     return False
 def printar_segmentacao(segmentacao):
-    print(segmentacao)
+    #print(segmentacao)
     for sent in segmentacao:
         texto_sentenca = ""
         for token in sent:

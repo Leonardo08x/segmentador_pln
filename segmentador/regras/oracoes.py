@@ -20,6 +20,10 @@ def segmentar_por_verbos(tokenized_sents):
                 if  sent[token_index][3] == 'relcl':
                     sub_sentencas_segmentadas.append(['|', '|', 'PUNCT', 'segment', False])
                     sub_sentencas_segmentadas.append(sent[token_index])
+                elif sent[token_index][1] in ["dizer", "afirmar", "falar", "declarar", "comentar", "perguntar", "responder"]:
+                    sub_sentencas_segmentadas.append(sent[token_index])
+                    if token_index < len(sent) - 1:
+                        sub_sentencas_segmentadas.append(['|', '|', 'PUNCT', 'segment', False])
                 elif sent[token_index][2] == "CCONJ" and token_index > 0 and token_index < len(sent) - 1:
                     sub_sentencas_segmentadas.append(['|', '|', 'PUNCT', 'segment', False])
                     sub_sentencas_segmentadas.append(sent[token_index])
