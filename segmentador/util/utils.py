@@ -19,3 +19,17 @@ def pre_processamento(texto):
     texto_separa_sinais = re.sub(r'([:/\|\-\_\(\)\[\]])', r' \1 ', texto)
     texto_unifica_espacos = re.sub(r'\s+', ' ', texto_separa_sinais)
     return texto_unifica_espacos.strip()
+
+def salvar_segmentacao(texto_tokenize):
+    try:
+        with open("texto_segmentado.txt", "x") as file:
+            for sent in texto_tokenize:
+                for token in sent:
+                    file.write(token[0] + " ")
+                file.write("\n")
+    except Exception as e:
+        with open("texto_segmentado.txt", "w") as file:
+            for sent in texto_tokenize:
+                for token in sent:
+                    file.write(token[0] + " ")
+                file.write("\n")

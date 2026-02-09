@@ -4,6 +4,7 @@ from regras.interiores import segmentacao_interior
 from regras.sinais import segmentar_sinais
 from util.utils import printar_segmentacao
 from util.utils import pre_processamento
+from util.utils import salvar_segmentacao
 model = spacy.load("pt_core_news_sm")
 
 def segmentar_texto(texto):
@@ -22,9 +23,11 @@ def segmentar_texto(texto):
     interior = segmentacao_interior(verbos_segmentados)
     sinais = segmentar_sinais(interior)
     printar_segmentacao(sinais)
-    return tokenized_sents
+    salvar_segmentacao(sinais)
+    return sinais
 
 
-
-segmentar_texto(":/\ | Ola mundo, estudo pln na ufpa ! sou o leonardo(corno), e gosto de programar em python.")
+with open("texto.txt", "r") as file:
+    texto = file.read()
+segmentar_texto(texto)
 

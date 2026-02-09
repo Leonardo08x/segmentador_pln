@@ -19,9 +19,13 @@ def segmentacao_interior(tokenized_sents):
             continue
         sub_sentencas_segmentadas = []
         for token_index in range(len(sent)):
-            if sent[token_index][1] == "," and check_gatilho_post_virgula(sent[token_index+1]):
+            print(sent[token_index])
+            if token_index < len(sent) - 1:
+                if sent[token_index][1] == "," and check_gatilho_post_virgula(sent[token_index+1]) :
+                        sub_sentencas_segmentadas.append(sent[token_index])
+                        sub_sentencas_segmentadas.append(['|', '|', 'PUNCT', 'segment', False])
+                else:
                     sub_sentencas_segmentadas.append(sent[token_index])
-                    sub_sentencas_segmentadas.append(['|', '|', 'PUNCT', 'segment', False])
             else:
                 sub_sentencas_segmentadas.append(sent[token_index])
         segmentacoes.append(sub_sentencas_segmentadas)
